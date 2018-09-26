@@ -277,9 +277,20 @@ public class AlephFormatter {
     private boolean isEscapeChar(String fmt, int idx) {
         return style.getEscapeCharacter() == fmt.charAt(idx);
     }
+    
+    private boolean isHyphenChar(char cc) {
+        return cc == '-';
+    }    
 
+    private boolean isUnderscoreChar(char cc) {
+        return cc == '_';
+    } 
+    
     private void validateParamChar(char cc, int idx) {
-        if ( !(isDigit(cc) || isLetter(cc) || '.'== cc) )
+        if ( !(isDigit(cc) || 
+                isLetter(cc) || 
+                isUnderscoreChar(cc) || 
+                '.'== cc) )
             throw invalidCharacterInParam(cc, idx);
     }
 
